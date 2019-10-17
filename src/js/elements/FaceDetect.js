@@ -186,21 +186,6 @@ export default class FaceDetect {
             });
     }
 
-    /**
-     * Minimize/maximize the diff. elements and labels
-     * @param {int} width
-     * @param {int} height
-     */
-    minimize(width, height) {
-        this.video.classList.add(FACEDETECTATTR.minimizeClass);
-    }
-
-    maximize(width, height) {
-        this.video.classList.remove(FACEDETECTATTR.minimizeClass);
-        this.video.height = height;
-        this.video.width = width;
-    }
-
 
     /**
      * ==================================================================================
