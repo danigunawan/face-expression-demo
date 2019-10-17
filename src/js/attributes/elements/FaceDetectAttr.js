@@ -12,7 +12,7 @@ class FaceDetectAttr {
     constructor() {
         this.minimizeClass = 'video--minimize';
 
-        this.modelsUri = 'assets/models';
+        this.modelsUri = 'assets/models/';
         /* For github LIVE! */
         // this.modelsUri = './face-recognition-demo/assets/models';
 
