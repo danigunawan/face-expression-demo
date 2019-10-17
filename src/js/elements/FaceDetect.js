@@ -61,8 +61,6 @@ export default class FaceDetect {
     setupAssets() {
         Promise.all([
             faceapi.nets.tinyFaceDetector.loadFromUri(FACEDETECTATTR.modelsUri),
-            faceapi.nets.faceLandmark68Net.loadFromUri(FACEDETECTATTR.modelsUri),
-            faceapi.nets.faceRecognitionNet.loadFromUri(FACEDETECTATTR.modelsUri),
             faceapi.nets.faceExpressionNet.loadFromUri(FACEDETECTATTR.modelsUri)
         ]).then(() => {
             this.setupStream();

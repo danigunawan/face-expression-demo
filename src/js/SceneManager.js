@@ -147,7 +147,7 @@ export default class SceneManager {
         }
 
         /* Update elements on screen changes */
-        UTILS.runCollection(this.elements, 'onWindowResize');
+        UTILS.runCollection(this.elements, 'onWindowResize', { width: width, height: height });
     }
 
 

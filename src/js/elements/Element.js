@@ -34,6 +34,7 @@ export default class Element {
      * Overwritable function called initially and on `onWindowResize` event
      */
     setupCanvasVars() {}
+    setupSize() {}
 
 
     /**
@@ -45,7 +46,8 @@ export default class Element {
     /**
      * On window size change
      */
-    onWindowResize() {
+    onWindowResize(size) {
+        this.setupSize(size);
         this.setupCanvasVars();
     }
 
