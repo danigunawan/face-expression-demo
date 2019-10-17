@@ -199,7 +199,7 @@ export default class Face extends Element {
 
 
         /* Set cap for minimum interval */
-        speed = FACEATTR.posSpeed + (currScore / 1000);
+        speed = FACEATTR.posSpeed + (currScore / 5000);
         if(speed > FACEATTR.maxPosSpeed)
             speed = FACEATTR.maxPosSpeed;
 

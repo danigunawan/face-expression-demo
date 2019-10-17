@@ -47,8 +47,11 @@ module.exports = (env, argv) => {
 
             /**
              * For github purposes!
+             * - Link fontawesome & Permanent Marker font on the index.html not on NPM
+             * - Remove _fontawesome.scss on styles.scss
+             * - Add in public path on the FaceDetectAttr.js
              */
-            // publicPath: './text-particle/',
+            // publicPath: './face-recognition-demo/',
             // path: path.resolve(__dirname, 'gh-pages')
 
         },

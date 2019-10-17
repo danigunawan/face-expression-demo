@@ -108,11 +108,21 @@ export default class FaceSpawner extends Element {
      * Spawn a `Face` element
      */
     spawn(delta) {
+        let spawn = false;
+
+        /* If no `Faces` remain */
+        if(this.faces.length == 0)
+            spawn = true;
+
+        /* If spawn timer reaches the required time */
         this.delta += delta;
         this.interval = this.getSpawnInterval();
+        if(this.delta > this.interval)
+            spawn = true;
 
-        if(this.delta > this.interval) {
 
+        /* Spawn if conditions are met */
+        if(spawn) {
             this.createFace();
 
             this.delta = 0;
@@ -214,7 +224,7 @@ export default class FaceSpawner extends Element {
             interval = 0;
 
         /* Set cap for minimum interval */
-        interval = FACESPAWNERATTR.interval - (currScore / 2.5);
+        interval = FACESPAWNERATTR.interval - (currScore);
         if(interval < FACESPAWNERATTR.minInterval)
             interval = FACESPAWNERATTR.minInterval;
 

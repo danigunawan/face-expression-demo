@@ -40,7 +40,7 @@ class UserAttr {
             neutral: 0,
             happy: 0,
             surprised: 0,
-            angry: 0,
+            // angry: 0,
             // sad: 0,
             // fearful: 0
         };

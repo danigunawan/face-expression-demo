@@ -14,7 +14,7 @@ import Math2 from '../../libs/Math2.js';
 class FaceSpawnerAttr {
 
     constructor() {
-        this.interval = 5000;
+        this.interval = 7000;
         this.minInterval = 1500;
 
         this.margin = 20;

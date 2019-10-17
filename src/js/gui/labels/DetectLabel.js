@@ -89,7 +89,7 @@ export default class DetectLabel extends Label {
      * Minimize/Maximize the main panel
      */
     minimize() { this.setClassname(DETECTLABELATTR.minimizeClass, null); }
-    maximize() { this.setClassname(DETECTLABELATTR.minimizeClass, null); }
+    maximize() { this.setClassname(null, DETECTLABELATTR.minimizeClass); }
 
 
     /**
