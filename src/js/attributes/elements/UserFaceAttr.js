@@ -38,7 +38,7 @@ class UserFaceAttr {
      * Get predefined word attributes
      * @return {Object}
      */
-    getPerfect() { return this.getWordAttr('perfect', '#2ecc71', 200); }
+    getPerfect() { return this.getWordAttr('perfect', '#2ecc71', 250); }
     getGood() { return this.getWordAttr('good', '#9b59b6', 150); }
     getBad() { return this.getWordAttr('bad', '#f39c12', 100); }
     getMiss() { return this.getWordAttr('miss', '#e74c3c', 0); }

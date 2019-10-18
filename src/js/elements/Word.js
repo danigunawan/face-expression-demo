@@ -54,6 +54,9 @@ export default class Word extends Element {
         this.animDuration = WORDATTR.animDuration;
         this.isAnimating = false;
 
+        /* Run resize function initially */
+        this.onWindowResize();
+
 
     	this.bindEvents();
 
@@ -94,7 +97,7 @@ export default class Word extends Element {
                     currAlpha: this.alphaGoal
                 },
                 this.animDuration,
-                Tween.linearTween,
+                Tween.easeOutQuad,
                 null,
                 () => { this.isAnimating = false; }
             );

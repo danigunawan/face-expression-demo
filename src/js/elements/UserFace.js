@@ -120,7 +120,7 @@ export default class UserFace extends Element {
      * @param  {Text} text
      */
     addWord(face, text) {
-        this.wordSpawner.spawn(new Vector2(face.position.x, face.position.y), text);
+        this.wordSpawner.spawn(new Vector2(face.position.x, face.currY), text);
     }
 
 
@@ -261,7 +261,7 @@ export default class UserFace extends Element {
      * @return {Boolean}
      */
     isOutOfBounds(face) {
-        if(face.position.y + (FACEATTR.getFontHeight() / 2) < this.topBoundery)
+        if(face.currY + (FACEATTR.getFontHeight() / 2) < this.topBoundery)
             return true;
 
         return false;

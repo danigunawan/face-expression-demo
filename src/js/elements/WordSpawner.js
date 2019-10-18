@@ -54,9 +54,6 @@ export default class WordSpawner extends Element {
     createWord(position, text) {
         let word = new Word(this.canvas, this.context, position, text);
         this.words.push(word);
-
-        /* Run resize function initially */
-        word.onWindowResize();
     }
 
 

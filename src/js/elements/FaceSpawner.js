@@ -69,9 +69,6 @@ export default class FaceSpawner extends Element {
     createFace() {
         let face = new Face(this.canvas, this.context, this.getSpawnLocation(), this.getSpawnType());
         this.faces.push(face);
-
-        /* Run resize function initially */
-        face.onWindowResize();
     }
 
 

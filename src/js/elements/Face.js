@@ -12,6 +12,7 @@ import { LOGGER } from '../libs/Logger.js';
 import { FACEATTR } from '../attributes/elements/FaceAttr.js';
 import { GAMESTATE } from '../states/GameState.js';
 
+import { Tween } from '../libs/Tween.js';
 import Vector2 from '../libs/Vector2.js';
 import Element from './Element.js';
 
@@ -45,22 +46,28 @@ export default class Face extends Element {
         this.activeColor = FACEATTR.activeColor;
         this.disableColor = FACEATTR.disableColor;
 
+        this.currY = this.position.y;
+
         this.currFont = FACEATTR.fontSize;
         this.fontGoal = this.currFont * 1.5;
-        this.fontSpeed = FACEATTR.fontSpeed;
 
         this.currAlpha = 1;
         this.alphaGoal = 0;
-        this.alphaSpeed = FACEATTR.alphaSpeed;
 
-        this.posSpeed = this.getSpeed();
+        this.toggleDuration = FACEATTR.toggleDuration;
 
         this.active = false;
         this.enabled = true;
         this.toggled = false;
 
+        /* Run resize function initially */
+        this.onWindowResize();
+
 
     	this.bindEvents();
+
+
+        this.moveUp();
     }
 
     /**
@@ -68,7 +75,7 @@ export default class Face extends Element {
      */
     setupCanvasVars() {
         this.textSize = this.getTextMeasurement();
-
+        this.yGoal = -FACEATTR.getFontHeight() * 1.25;
     }
 
 
@@ -94,41 +101,44 @@ export default class Face extends Element {
      */
     enable(bool = true) { this.enabled = bool; }
     activate(bool = true) { this.active = bool; }
-    toggle(bool = true) { this.toggled = bool; }
-
-
-    /**
-     * Update vector position
-     */
-    updatePosition() {
-        this.position.y -= this.posSpeed;
+    toggle(bool = true) {
+        this.toggled = bool;
+        this.fadeOut();
     }
 
     /**
-     * Update the font
+     * Start default animation
      */
-    updateFont() {
-        this.currFont += this.fontSpeed;
+    moveUp() {
+        if(this.toggled) return;
+
+        /* Update `y` axis */
+        new Tween(this, {
+                    currY: this.yGoal,
+                },
+                this.getSpeed(),
+                Tween.linearTween
+            );
     }
 
     /**
-     * Update the opacity
+     * Start fade-out animation
      */
-    updateAlpha() {
-        if(this.currAlpha > 0) {
-            let tmpAlpha = this.currAlpha - this.alphaSpeed;
-            this.currAlpha = tmpAlpha < 0 ? 0 : tmpAlpha;
-        }
+    fadeOut() {
+        if(!this.toggled) return;
+
+        /* Update font & opacity */
+        new Tween(this, {
+                    currFont: this.fontGoal,
+                    currAlpha: this.alphaGoal
+                },
+                this.toggleDuration,
+                Tween.easeOutQuad
+            );
     }
 
     update() {
-        /* Update attributes depending on state */
-        if(this.toggled) {
-            this.updateFont();
-            this.updateAlpha();
-        } else {
-            this.updatePosition();
-        }
+        //
     }
 
 
@@ -166,7 +176,7 @@ export default class Face extends Element {
         this.context.shadowBlur = 15;
         this.context.shadowColor = color;
 
-        this.context.translate(this.position.x - (this.textSize.width / 2), this.position.y + FACEATTR.getFontHeight(this.currFont));
+        this.context.translate(this.position.x - (this.textSize.width / 2), this.currY + FACEATTR.getFontHeight(this.currFont));
         this.context.fillText(this.text, 0, 0);
 
 
@@ -199,9 +209,9 @@ export default class Face extends Element {
 
 
         /* Set cap for minimum interval */
-        speed = FACEATTR.posSpeed + (currScore / 5000);
-        if(speed > FACEATTR.maxPosSpeed)
-            speed = FACEATTR.maxPosSpeed;
+        speed = FACEATTR.moveDuration - (currScore / 2);
+        if(speed < FACEATTR.minMoveDuration)
+            speed = FACEATTR.minMoveDuration;
 
         return speed;
     }
@@ -270,7 +280,7 @@ export default class Face extends Element {
                 /* If toggled and faded-out... */
         return (this.toggled && this.currAlpha == 0) ||
                 /* ...out of bounds*/
-                this.position.y + FACEATTR.fontSize < 0;
+                this.currY + FACEATTR.fontSize < 0;
     }
 
 

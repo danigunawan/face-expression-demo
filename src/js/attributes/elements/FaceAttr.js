@@ -12,12 +12,10 @@ class FaceAttr {
     constructor() {
         this.font = 'Font Awesome 5 Free';
         this.fontSize = 90;
-        this.fontSpeed = 2.5;
 
-        this.alphaSpeed = 0.05;
-
-        this.posSpeed = 0.75;
-        this.maxPosSpeed = 10;
+        this.toggleDuration = 500;
+        this.moveDuration = 10000;
+        this.minMoveDuration = 1500;
 
         this.defaultColor = '#f6e58d';
         this.activeColor = '#f9ca24';
