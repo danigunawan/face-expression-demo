@@ -95,8 +95,6 @@ export default class WordSpawner extends Element {
                 let word = this.words[i];
                 if(word.isDead()) {
                     this.words.splice(i, 1);
-                } else {
-                    word.update();
                 }
             }
         }

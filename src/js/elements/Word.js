@@ -12,6 +12,7 @@ import { LOGGER } from '../libs/Logger.js';
 import { WORDATTR } from '../attributes/elements/WordAttr.js';
 import { FACEATTR } from '../attributes/elements/FaceAttr.js';
 
+import { Tween } from '../libs/Tween.js';
 import Math2 from '../libs/Math2.js';
 import Vector2 from '../libs/Vector2.js';
 import Element from './Element.js';
@@ -41,18 +42,23 @@ export default class Word extends Element {
      * Initial setup
      */
     init() {
-        this.ySpeed = this.getVertSpeed();
         this.currY = this.position.y;
+        this.yGoal = this.currY - 75;
 
-        this.alphaSpeed = WORDATTR.alphaSpeed;
         this.alphaGoal = 0;
         this.currAlpha = 1;
 
-        this.fontSpeed = WORDATTR.fontSpeed;
         this.fontGoal = WORDATTR.fontSize;
-        this.currFont = 1;
+        this.currFont = WORDATTR.fontSize * .6;
+
+        this.animDuration = WORDATTR.animDuration;
+        this.isAnimating = false;
+
 
     	this.bindEvents();
+
+
+        this.fadeOut();
     }
 
 
@@ -74,34 +80,29 @@ export default class Word extends Element {
      **/
 
     /**
-     * Update the font size
+     * Start fade-out animation
      */
-    updateFont() {
-        if(this.currFont < this.fontGoal)
-            this.currFont += this.fontSpeed;
+    fadeOut() {
+        if(this.isAnimating) return;
+
+        this.isAnimating = true;
+
+        /* Animate properties */
+        new Tween(this, {
+                    currY: this.yGoal,
+                    currFont: this.fontGoal,
+                    currAlpha: this.alphaGoal
+                },
+                this.animDuration,
+                Tween.linearTween,
+                null,
+                () => { this.isAnimating = false; }
+            );
     }
 
-    /**
-     * Update the vertical position
-     */
-    updateVertical() {
-        this.currY -= this.ySpeed;
-    }
-
-    /**
-     * Update the opacity
-     */
-    updateAlpha() {
-        if(this.currAlpha > 0) {
-            let tmpAlpha = this.currAlpha - this.alphaSpeed;
-            this.currAlpha = tmpAlpha < 0 ? 0 : tmpAlpha;
-        }
-    }
 
     update() {
-        this.updateFont();
-        this.updateVertical();
-        this.updateAlpha();
+        if(this.isAnimating) return;
     }
 
 
@@ -150,15 +151,6 @@ export default class Word extends Element {
      **/
 
     /**
-     * Get vertical position speed
-     * @return {Int}
-     */
-    getVertSpeed() {
-        let speed = FACEATTR.posSpeed * 1.75;
-        return speed <= WORDATTR.maxPosSpeed ? speed : WORDATTR.maxPosSpeed;
-    }
-
-    /**
      * Get canvas font
      */
     getCanvasFont() {
@@ -177,7 +169,7 @@ export default class Word extends Element {
      * @return {Boolean}
      */
     isDead() {
-        return this.currAlpha == 0;
+        return false;//this.currAlpha == 0;
     }
 
 
