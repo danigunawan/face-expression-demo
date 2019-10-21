@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+    <head>
+
+        <base href="/" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Face Expression Demo</title>
+        <meta name="description" content="Face Expression Demo">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <meta property="og:title" content="Face Expression Demo">
+        <meta property="og:description" content="Face Expression Demo">
+        <meta property="og:url" content="/">
+        <meta property="og:site_name" content="Face Expression Demo">
+        <meta property="og:type" content="website">
+
+        <!-- For Github LIVE only, turn off importing of _fontawesome.scss on the styles.scss -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+    <link href="./face-expression-demo/2.eeb9d590ed8d92438cfe.css" rel="stylesheet"></head>
+    <body>
+        <div id="main">
+
+            <video id="video"></video>
+            <canvas id="canvas"></canvas>
+
+
+            <div id="gui">
+
+                <div id="menus">
+                    <div class="menu-border">
+                        <div class="menu-list">
+                            <div class="menu-card">
+                                <div id="start-menu" class="menu">
+                                    <button id="startGame" class="button">Start Game</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="score" class="label">
+                    <p class="score__label">0</p>
+                    <!-- <p class="combo__label">0x</p> -->
+                </div>
+
+                <div id="face-expression" class="label">
+                    <i class="face-expression__icon far fa-question-circle"></i>
+                    <p class="face-expression__label">Mood</p>
+                </div>
+
+                <div id="face-detection" class="label">
+                    <p class="face-detection__label face-detection__label--waiting">Loading face detection</p>
+                    <p class="face-detection__label face-detection__label--not-detected">No face detected</p>
+                    <p class="face-detection__label face-detection__label--detected">Face detected</p>
+                </div>
+
+
+                <div id="loading" class="label">
+                    <div class="loading__border">
+                        <p class="loading__label">Loading...</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    <script type="text/javascript" src="./face-expression-demo/runtime.eeb9d590ed8d92438cfe.min.js"></script><script type="text/javascript" src="./face-expression-demo/vendors.eeb9d590ed8d92438cfe.min.js"></script><script type="text/javascript" src="./face-expression-demo/styles.eeb9d590ed8d92438cfe.min.js"></script><script type="text/javascript" src="./face-expression-demo/app.eeb9d590ed8d92438cfe.min.js"></script></body>
+
+</html>
