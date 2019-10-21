@@ -51,7 +51,7 @@ module.exports = (env, argv) => {
              * - Remove _fontawesome.scss on styles.scss
              * - Add in public path on the FaceDetectAttr.js
              */
-            // publicPath: './face-recognition-demo/',
+            // publicPath: './face-expression-demo/',
             // path: path.resolve(__dirname, 'gh-pages')
 
         },
