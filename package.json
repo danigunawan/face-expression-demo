@@ -1,5 +1,5 @@
 {
-    "name": "Face Expression Detection",
+    "name": "face-expression-detection",
     "version": "1.0.0",
     "description": "Face Expression Detection",
     "private": true,
