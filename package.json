@@ -1,7 +1,7 @@
 {
-    "name": "math",
+    "name": "Face Expression Detection",
     "version": "1.0.0",
-    "description": "Math",
+    "description": "Face Expression Detection",
     "private": true,
     "main": "./src/js/app.js",
     "scripts": {
